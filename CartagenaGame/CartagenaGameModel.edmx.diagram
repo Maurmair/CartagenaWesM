@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba79174333ba4a8ca5d926b7f81a28da" Name="Diagram1" >
+        <EntityTypeShape EntityType="CartagenaGame.BU.Game" Width="1.5" PointX="2.375" PointY="3" />
+        <EntityTypeShape EntityType="CartagenaGame.BU.GameResult" Width="1.5" PointX="5.25" PointY="0.5" />
+        <EntityTypeShape EntityType="CartagenaGame.BU.Player" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="CartagenaGame.BU.Move" Width="1.5" PointX="5.25" PointY="6.125" />
+        <EntityTypeShape EntityType="CartagenaGame.BU.Achievement" Width="1.5" PointX="7.875" PointY="1.5" />
+        <EntityTypeShape EntityType="CartagenaGame.BU.Achieved" Width="1.5" PointX="7.875" PointY="4.25" />
+        <AssociationConnector Association="CartagenaGame.BU.GameGameResult" />
+        <AssociationConnector Association="CartagenaGame.BU.AchievementAchieved" />
+        <AssociationConnector Association="CartagenaGame.BU.AchievedPlayer" />
+        <AssociationConnector Association="CartagenaGame.BU.MovePlayer" />
+        <AssociationConnector Association="CartagenaGame.BU.PlayerGame" />
+        <AssociationConnector Association="CartagenaGame.BU.MoveGame" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

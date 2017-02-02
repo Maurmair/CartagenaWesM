@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{213F74E7-2118-4E3B-BCF8-1A15719420F6}</ProjectGuid>
+    <ProjectGuid>{B836DA42-02AB-403A-A0F7-D7D9019F2F1E}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CartagenaGame</RootNamespace>
-    <AssemblyName>CartagenaGame</AssemblyName>
+    <RootNamespace>User</RootNamespace>
+    <AssemblyName>User</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -108,13 +108,13 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <EntityDeploy Include="CartagenaGameModel.edmx">
+    <EntityDeploy Include="UserModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CartagenaGameModel.Designer.cs</LastGenOutput>
-      <CustomToolNamespace>CartagenaGame.BU</CustomToolNamespace>
+      <LastGenOutput>UserModel.Designer.cs</LastGenOutput>
+      <CustomToolNamespace>User.BU</CustomToolNamespace>
     </EntityDeploy>
-    <Content Include="CartagenaGameModel.edmx.diagram">
-      <DependentUpon>CartagenaGameModel.edmx</DependentUpon>
+    <Content Include="UserModel.edmx.diagram">
+      <DependentUpon>UserModel.edmx</DependentUpon>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -124,65 +124,66 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="CartagenaGameModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CartagenaGameModel.Context.cs</LastGenOutput>
-      <DependentUpon>CartagenaGameModel.edmx</DependentUpon>
-      <CustomToolNamespace>CartagenaGame.BU</CustomToolNamespace>
-    </Content>
-    <Content Include="CartagenaGameModel.edmx.sql" />
-    <Content Include="CartagenaGameModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>CartagenaGameModel.cs</LastGenOutput>
-      <DependentUpon>CartagenaGameModel.edmx</DependentUpon>
-      <CustomToolNamespace>CartagenaGame.BU</CustomToolNamespace>
-    </Content>
     <Content Include="Global.asax" />
+    <Content Include="UserModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UserModel.Context.cs</LastGenOutput>
+      <DependentUpon>UserModel.edmx</DependentUpon>
+      <CustomToolNamespace>User.BU</CustomToolNamespace>
+    </Content>
+    <Content Include="UserModel.edmx.sql" />
+    <Content Include="UserModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>UserModel.cs</LastGenOutput>
+      <DependentUpon>UserModel.edmx</DependentUpon>
+      <CustomToolNamespace>User.BU</CustomToolNamespace>
+    </Content>
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Achieved.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
+    <Compile Include="Account.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Achievement.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
+    <Compile Include="AccountStatistic.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="CartagenaGameModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CartagenaGameModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CartagenaGameModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CartagenaGameModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>CartagenaGameModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Game.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="GameResult.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
+    <Compile Include="BU\Account.cs" />
+    <Compile Include="BU\FriendList.cs" />
+    <Compile Include="CC\CCSendInvite.cs" />
+    <Compile Include="FriendList.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Move.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
+    <Compile Include="Notification.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Player.cs">
-      <DependentUpon>CartagenaGameModel.tt</DependentUpon>
+    <Compile Include="Profile.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Report.cs">
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>UserModel.edmx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="BU\" />
-    <Folder Include="CC\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -200,9 +201,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>7525</DevelopmentServerPort>
+          <DevelopmentServerPort>7816</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:7525/</IISUrl>
+          <IISUrl>http://localhost:7816/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -1,0 +1,309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="User.BU.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="UserBUStoreContainer">
+    <EntitySet Name="AccountSet" EntityType="User.BU.Store.AccountSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileSet" EntityType="User.BU.Store.ProfileSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="AccountStatisticSet" EntityType="User.BU.Store.AccountStatisticSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NotificationSet" EntityType="User.BU.Store.NotificationSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ReportSet" EntityType="User.BU.Store.ReportSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="FriendListSet" EntityType="User.BU.Store.FriendListSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="ProfileAccount" Association="User.BU.Store.ProfileAccount">
+      <End Role="Profile" EntitySet="ProfileSet" />
+      <End Role="Account" EntitySet="AccountSet" />
+    </AssociationSet>
+    <AssociationSet Name="AccountAccountStatistic" Association="User.BU.Store.AccountAccountStatistic">
+      <End Role="Account" EntitySet="AccountSet" />
+      <End Role="AccountStatistic" EntitySet="AccountStatisticSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AccountSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="LockedUntil" Type="datetime" Nullable="false" />
+    <Property Name="IsPremium" Type="bit" Nullable="false" />
+    <Property Name="IsInactive" Type="bit" Nullable="false" />
+    <Property Name="NotificationSettings" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="AccountStatistic_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="RankScore" Type="int" Nullable="false" />
+    <Property Name="PlayStyle" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Class" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Account_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="AccountStatisticSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TimeOnline" Type="int" Nullable="false" />
+    <Property Name="GewonnenGames" Type="int" Nullable="false" />
+    <Property Name="TimeLoggedIn" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NotificationSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Content" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ShowNotification" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ReportSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Reason" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReportedUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ReportingUserId" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MessageId" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FriendListSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountIdOne" Type="smallint" Nullable="false" />
+    <Property Name="AccountIdTwo" Type="smallint" Nullable="false" />
+  </EntityType>
+  <Association Name="ProfileAccount">
+    <End Role="Profile" Type="User.BU.Store.ProfileSet" Multiplicity="*" />
+    <End Role="Account" Type="User.BU.Store.AccountSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Account">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Profile">
+        <PropertyRef Name="Account_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="AccountAccountStatistic">
+    <End Role="Account" Type="User.BU.Store.AccountSet" Multiplicity="*" />
+    <End Role="AccountStatistic" Type="User.BU.Store.AccountStatisticSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="AccountStatistic">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="AccountStatistic_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="User.BU" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="UserModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AccountSet" EntityType="User.BU.Account" />
+          <EntitySet Name="ProfileSet" EntityType="User.BU.Profile" />
+          <EntitySet Name="AccountStatisticSet" EntityType="User.BU.AccountStatistic" />
+          <EntitySet Name="NotificationSet" EntityType="User.BU.Notification" />
+          <EntitySet Name="ReportSet" EntityType="User.BU.Report" />
+          <EntitySet Name="FriendListSet" EntityType="User.BU.FriendList" />
+          <AssociationSet Name="ProfileAccount" Association="User.BU.ProfileAccount">
+            <End Role="Profile" EntitySet="ProfileSet" />
+            <End Role="Account" EntitySet="AccountSet" />
+          </AssociationSet>
+          <AssociationSet Name="AccountAccountStatistic" Association="User.BU.AccountAccountStatistic">
+            <End Role="Account" EntitySet="AccountSet" />
+            <End Role="AccountStatistic" EntitySet="AccountStatisticSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="LockedUntil" Type="DateTime" Nullable="false" />
+          <Property Name="IsPremium" Type="Boolean" Nullable="false" />
+          <Property Name="IsInactive" Type="Boolean" Nullable="false" />
+          <Property Name="NotificationSettings" Type="String" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="User.BU.ProfileAccount" FromRole="Account" ToRole="Profile" />
+          <NavigationProperty Name="AccountStatistic" Relationship="User.BU.AccountAccountStatistic" FromRole="Account" ToRole="AccountStatistic" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DisplayName" Type="String" Nullable="false" />
+          <Property Name="RankScore" Type="Int32" Nullable="false" />
+          <Property Name="PlayStyle" Type="String" Nullable="false" />
+          <Property Name="Class" Type="String" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="User.BU.ProfileAccount" FromRole="Profile" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="AccountStatistic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TimeOnline" Type="Int32" Nullable="false" />
+          <Property Name="GewonnenGames" Type="Int32" Nullable="false" />
+          <Property Name="TimeLoggedIn" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Account" Relationship="User.BU.AccountAccountStatistic" FromRole="AccountStatistic" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Content" Type="String" Nullable="false" />
+          <Property Name="ShowNotification" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Report">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Reason" Type="String" Nullable="false" />
+          <Property Name="ReportedUserId" Type="String" Nullable="false" />
+          <Property Name="ReportingUserId" Type="String" Nullable="false" />
+          <Property Name="MessageId" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FriendList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccountIdOne" Type="Int16" Nullable="false" />
+          <Property Name="AccountIdTwo" Type="Int16" Nullable="false" />
+        </EntityType>
+        <Association Name="ProfileAccount">
+          <End Type="User.BU.Profile" Role="Profile" Multiplicity="1" />
+          <End Type="User.BU.Account" Role="Account" Multiplicity="1" />
+        </Association>
+        <Association Name="AccountAccountStatistic">
+          <End Type="User.BU.Account" Role="Account" Multiplicity="1" />
+          <End Type="User.BU.AccountStatistic" Role="AccountStatistic" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="UserBUStoreContainer" CdmEntityContainer="UserModelContainer">
+    <EntitySetMapping Name="AccountSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.Account)">
+        <MappingFragment StoreEntitySet="AccountSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LockedUntil" ColumnName="LockedUntil" />
+          <ScalarProperty Name="IsPremium" ColumnName="IsPremium" />
+          <ScalarProperty Name="IsInactive" ColumnName="IsInactive" />
+          <ScalarProperty Name="NotificationSettings" ColumnName="NotificationSettings" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.Profile)">
+        <MappingFragment StoreEntitySet="ProfileSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="RankScore" ColumnName="RankScore" />
+          <ScalarProperty Name="PlayStyle" ColumnName="PlayStyle" />
+          <ScalarProperty Name="Class" ColumnName="Class" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AccountStatisticSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.AccountStatistic)">
+        <MappingFragment StoreEntitySet="AccountStatisticSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TimeOnline" ColumnName="TimeOnline" />
+          <ScalarProperty Name="GewonnenGames" ColumnName="GewonnenGames" />
+          <ScalarProperty Name="TimeLoggedIn" ColumnName="TimeLoggedIn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NotificationSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.Notification)">
+        <MappingFragment StoreEntitySet="NotificationSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="ShowNotification" ColumnName="ShowNotification" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ReportSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.Report)">
+        <MappingFragment StoreEntitySet="ReportSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="Reason" ColumnName="Reason" />
+          <ScalarProperty Name="ReportedUserId" ColumnName="ReportedUserId" />
+          <ScalarProperty Name="ReportingUserId" ColumnName="ReportingUserId" />
+          <ScalarProperty Name="MessageId" ColumnName="MessageId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FriendListSet">
+      <EntityTypeMapping TypeName="IsTypeOf(User.BU.FriendList)">
+        <MappingFragment StoreEntitySet="FriendListSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="AccountIdOne" ColumnName="AccountIdOne" />
+          <ScalarProperty Name="AccountIdTwo" ColumnName="AccountIdTwo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="ProfileAccount" TypeName="User.BU.ProfileAccount" StoreEntitySet="ProfileSet">
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Account_Id" />
+      </EndProperty>
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="AccountAccountStatistic" TypeName="User.BU.AccountAccountStatistic" StoreEntitySet="AccountSet">
+      <EndProperty Name="AccountStatistic">
+        <ScalarProperty Name="Id" ColumnName="AccountStatistic_Id" />
+      </EndProperty>
+      <EndProperty Name="Account">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
